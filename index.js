@@ -16,14 +16,6 @@ mongoose.connect(
   }
 )
 
-const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once("open", function () {
-  app.listen(PORT, () => {
-    console.log(`Server and DB is running on port ${PORT}`);
-  });
-});
-
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(function (req, res, next) {
@@ -33,7 +25,15 @@ app.use(function (req, res, next) {
   res.setHeader('Access-Control-Allow-Credentials', true);
   next();
 });
-app.get('/',(req, res) => {
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once("open", function () {
+  app.listen(PORT, () => {
+    console.log(`Server and DB is running on port ${PORT}`);
+  });
+});
+
+app.get('/', (req, res) => {
   res.send("Hello Manit Connect Backend")
 })
 app.use('/auth', authRoutes)

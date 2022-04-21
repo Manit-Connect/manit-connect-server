@@ -15,6 +15,7 @@ const generateJwt = (user) => {
 const login = async (req, res, next) => {
   const user = req.body
   const currentUser = await User.findOne({ email: user.email })
+  console.log(currentUser)
   if (!currentUser) {
     res.status(401).json({
       message: 'User not found'
