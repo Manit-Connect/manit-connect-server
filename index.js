@@ -33,7 +33,9 @@ app.use(function (req, res, next) {
   res.setHeader('Access-Control-Allow-Credentials', true);
   next();
 });
-
+app.get('/',(req, res) => {
+  res.send("Hello Manit Connect Backend")
+})
 app.use('/auth', authRoutes)
 app.use('/posts', postsRoutes)
 
