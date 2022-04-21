@@ -10,6 +10,10 @@ const postSchema = new Schema({
     type: String,
     required: true
   },
+  commitee: {
+    type: String,
+    required: true
+  },
   image: {
     type: String,
     required: false
@@ -18,6 +22,10 @@ const postSchema = new Schema({
     type: String,
     default: Date.now.toString()
   },
+  likes: {
+    type: Number,
+    default: 0
+  }
 })
 
 const Post = mongoose.model('Post', postSchema)

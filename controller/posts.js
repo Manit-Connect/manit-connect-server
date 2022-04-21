@@ -16,8 +16,17 @@ const getPostById = async (req, res, next) => {
   res.json(post)
 }
 
+const likePost = async (req, res, next) => {
+  const body = req.body
+  const post = await Post.findById(body.id)
+  post.likes += 1
+  await post.save()
+  res.json(post)
+}
+
 module.exports = {
   getPosts,
   createPost,
-  getPostById
+  getPostById,
+  likePost
 }
