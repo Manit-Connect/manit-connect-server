@@ -21,7 +21,7 @@ const login = async (req, res, next) => {
     })
   }
 
-  const match = bcrypt.match(user.password, currentUser.password)
+  const match = bcrypt.compare(user.password, currentUser.password)
   if (!match) {
     res.status(401).json({
       message: 'Password is incorrect'
@@ -69,7 +69,14 @@ const signup = async (req, res, next) => {
   })
 }
 
+const logout = async(req, res, next) => {
+  res.status(200).json({
+    message: 'Logout successful'
+  })
+}
+
 module.exports = {
   login,
-  signup
+  signup,
+  logout
 }
